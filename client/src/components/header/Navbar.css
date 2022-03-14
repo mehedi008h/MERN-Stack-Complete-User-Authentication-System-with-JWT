@@ -23,7 +23,8 @@
 }
 
 .app__navbar-logo img {
-  width: 150px;
+  width: 40px;
+  height: 40px;
 }
 
 .app__navbar-links {

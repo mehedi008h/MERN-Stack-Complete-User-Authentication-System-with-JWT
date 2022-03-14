@@ -9,16 +9,22 @@ const Navbar = () => {
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-        <h3 className="text-white">MERN</h3>
+        <img
+          src="https://res.cloudinary.com/mehedi08h/image/upload/v1647280872/react-final/auth/logo_wyrs86.png"
+          alt="app__logo"
+        />
       </div>
       <div className="app__navbar-login">
+        <img
+          className="me-2"
+          src="https://res.cloudinary.com/mehedi08h/image/upload/v1647280872/react-final/auth/user_bw8gqi.png"
+          alt=""
+        />
+
+        <div />
         <Link to="/login" className="p__opensans">
           Log In / Registration
         </Link>
-        <div />
-        <a href="/" className="p__opensans">
-          Book Table
-        </a>
       </div>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu
