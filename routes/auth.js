@@ -8,8 +8,9 @@ const {
   updatePassword,
   updateProfile,
   logout,
+  allUsers,
 } = require("../controller/authController");
-const { isAuthenticatedUser } = require("../middleware/auth");
+const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = express.Router();
 
 router.route("/register").post(registerUser);
@@ -21,5 +22,10 @@ router.route("/logout").get(logout);
 router.route("/me").get(isAuthenticatedUser, getUserProfile);
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
+
+// admin routes
+router
+  .route("/admin/users")
+  .get(isAuthenticatedUser, authorizeRoles("admin"), allUsers);
 
 module.exports = router;
