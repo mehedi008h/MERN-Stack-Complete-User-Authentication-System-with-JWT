@@ -1,17 +1,37 @@
-import React, { useState } from "react";
-// import { useAlert } from "react-alert";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 
 import "./auth.css";
+import { clearErrors, login } from "../../actions/userActions";
 
-const Login = () => {
+const Login = ({ history, location }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const alert = useAlert();
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const { isAuthenticated, error, loading } = useSelector(
+    (state) => state.auth
+  );
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push(redirect);
+    }
+
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, alert, isAuthenticated, error, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    dispatch(login(email, password));
   };
   return (
     <div className="login">
