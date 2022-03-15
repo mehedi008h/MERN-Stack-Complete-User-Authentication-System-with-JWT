@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const { user, loading } = useSelector((state) => state.auth);
   return (
     <nav className="app__navbar">
@@ -22,9 +23,27 @@ const Navbar = () => {
         <div />
         {user ? (
           <>
-            <Link to="/login" className="p__opensans">
+            <button onClick={() => setDropdown(true)} className="profile_btn">
               {user?.name}
-            </Link>
+            </button>
+            {dropdown && (
+              <ul className="sub_menu">
+                <Link
+                  to="/me"
+                  onClick={() => setDropdown(false)}
+                  className="p__opensans"
+                >
+                  My Profile
+                </Link>
+                <Link
+                  to="/me"
+                  onClick={() => setDropdown(false)}
+                  className="p__opensans"
+                >
+                  Logout
+                </Link>
+              </ul>
+            )}
           </>
         ) : (
           <>

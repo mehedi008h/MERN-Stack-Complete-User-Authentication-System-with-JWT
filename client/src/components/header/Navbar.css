@@ -6,6 +6,7 @@
   background: var(--color-black);
 
   padding: 1rem 2rem;
+  position: relative;
 }
 .p__opensans {
   font-family: var(--font-alt);
@@ -109,6 +110,27 @@
 
 .app__navbar-smallscreen_links li:hover {
   color: var(--color-white);
+}
+.profile_btn {
+  border: 2px solid goldenrod;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  margin-left: 10px;
+}
+
+.sub_menu {
+  background-color: black;
+  position: absolute;
+  right: 1%;
+  top: 75px;
+
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 @media screen and (min-width: 2000px) {

@@ -6,6 +6,8 @@ import Navbar from "./components/header/Navbar";
 import store from "./store";
 import { useEffect } from "react";
 import { loadUser } from "./actions/userActions";
+import Register from "./pages/auth/Register";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   useEffect(() => {
@@ -18,6 +20,8 @@ function App() {
         <Navbar />
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/me" component={Profile} />
       </Router>
     </div>
   );
