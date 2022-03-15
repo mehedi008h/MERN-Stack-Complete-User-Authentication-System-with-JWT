@@ -3,9 +3,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const { user, loading } = useSelector((state) => state.auth);
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
@@ -15,16 +17,22 @@ const Navbar = () => {
         />
       </div>
       <div className="app__navbar-login">
-        <img
-          className="me-2"
-          src="https://res.cloudinary.com/mehedi08h/image/upload/v1647280872/react-final/auth/user_bw8gqi.png"
-          alt=""
-        />
+        {/* <img className="me-2" src={user?.avatar.url} alt="" /> */}
 
         <div />
-        <Link to="/login" className="p__opensans">
-          Log In / Registration
-        </Link>
+        {user ? (
+          <>
+            <Link to="/login" className="p__opensans">
+              {user?.name}
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="p__opensans">
+              Log In / Registration
+            </Link>
+          </>
+        )}
       </div>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu
