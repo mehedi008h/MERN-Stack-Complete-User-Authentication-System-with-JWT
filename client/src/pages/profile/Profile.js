@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { BsEmojiSmile, BsPhone } from "react-icons/bs";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineMail } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
 import "./Profile.css";
 
@@ -21,7 +21,10 @@ const Profile = () => {
             <div className="profile_container">
               <div className="d-flex align-items-center justify-content-between">
                 <h4>My Profile</h4>
-                <Link>Edit</Link>
+                <Link className="edit_link" to="/me/update">
+                  <AiOutlineEdit className="me-2" />
+                  Edit
+                </Link>
               </div>
               <hr />
               <div className="d-flex align-items-center justify-content-between">

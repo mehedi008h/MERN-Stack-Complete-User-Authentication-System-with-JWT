@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RiUser3Line } from "react-icons/ri";
+import { RiLockPasswordLine, RiUser3Line } from "react-icons/ri";
 import { FaUserEdit } from "react-icons/fa";
 import { AiOutlineLogout, AiOutlineUnorderedList } from "react-icons/ai";
 import "./Sidebar.css";
@@ -19,9 +19,19 @@ const Sidebar = ({ user }) => {
   return (
     <div className="sidebar">
       <div className="text-center">
-        <img src="" alt="" />
+        <div className="mb-3">
+          <img
+            src={user?.avatar.url}
+            style={{
+              height: "150px",
+              width: "150px",
+              borderRadius: "50%",
+            }}
+            alt=""
+          />
+        </div>
         <h4>{user?.name}</h4>
-        <p>{user?.role}</p>
+        <p className="user_role">{user?.role}</p>
       </div>
       <hr className="text-primary fw-bold" />
       <div className="links">
@@ -31,8 +41,9 @@ const Sidebar = ({ user }) => {
         <Link to="/me/update" className="link">
           <FaUserEdit className="me-3" size={20} /> Edit Profile
         </Link>
-        <Link className="link">
-          <AiOutlineUnorderedList className="me-3" size={20} /> All User
+        <Link to="/password/update" className="link">
+          <RiLockPasswordLine className="me-3" size={20} />
+          Password
         </Link>
         <Link to="/" onClick={logoutHandler} className="link">
           <AiOutlineLogout className="me-3" size={20} /> Logout

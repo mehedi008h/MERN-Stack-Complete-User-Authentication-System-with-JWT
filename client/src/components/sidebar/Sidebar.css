@@ -27,3 +27,15 @@
 .link:hover {
   background-color: aliceblue;
 }
+
+.user_role {
+  background-color: rgb(152, 218, 152);
+  width: 50%;
+  margin: auto;
+  padding: 5px 10px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: black;
+  border: 2px solid green;
+  border-radius: 20px;
+}
