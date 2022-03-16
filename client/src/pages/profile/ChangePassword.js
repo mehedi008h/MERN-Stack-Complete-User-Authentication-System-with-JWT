@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updatePassword } from "../../actions/userActions";
+import ButtonLoader from "../../components/loader/ButtonLoader";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 import "./Profile.css";
@@ -78,7 +79,7 @@ const ChangePassword = ({ history }) => {
                   </div>
 
                   <div className="from_group w-50 mx-auto">
-                    <button>Update</button>
+                    <button>{loading ? <ButtonLoader /> : "Update"}</button>
                   </div>
                 </form>
               </div>

@@ -18,6 +18,12 @@ const auth = require("./routes/auth");
 
 app.use("/api/v1", auth);
 
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+
 // connecting to database
 connectDatabase();
 

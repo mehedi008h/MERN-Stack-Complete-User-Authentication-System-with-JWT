@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "../../actions/userActions";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
+import ButtonLoader from "../../components/loader/ButtonLoader";
 
 const EditProfile = ({ history }) => {
   const [name, setName] = useState("");
@@ -49,7 +50,7 @@ const EditProfile = ({ history }) => {
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, alert, error, history, isUpdated]);
+  }, [dispatch, alert, error, history, isUpdated, user]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -147,7 +148,7 @@ const EditProfile = ({ history }) => {
                     </div>
                   </div>
                   <div className="from_group w-50 mx-auto">
-                    <button>Update</button>
+                    <button>{loading ? <ButtonLoader /> : "Update"}</button>
                   </div>
                 </form>
               </div>
