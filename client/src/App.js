@@ -10,6 +10,8 @@ import Register from "./pages/auth/Register";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import ChangePassword from "./pages/profile/ChangePassword";
+import AllUser from "./pages/admin/allUser/AllUser";
+import ProtectedRoute from "./components/route/ProtectedRoute";
 
 function App() {
   useEffect(() => {
@@ -26,6 +28,12 @@ function App() {
         <Route path="/me" component={Profile} exact />
         <Route path="/me/update" component={EditProfile} exact />
         <Route path="/password/update" component={ChangePassword} exact />
+        <ProtectedRoute
+          path="/admin/alluser"
+          component={AllUser}
+          isAdmin={true}
+          exact
+        />
       </Router>
     </div>
   );

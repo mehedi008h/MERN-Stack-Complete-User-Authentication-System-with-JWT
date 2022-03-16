@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  ALL_USERS_FAIL,
+  ALL_USERS_REQUEST,
+  ALL_USERS_SUCCESS,
   CLEAR_ERRORS,
   LOAD_USER_FAIL,
   LOAD_USER_REQUEST,
@@ -158,6 +161,25 @@ export const updatePassword = (passwords) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Get all users
+export const allUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USERS_REQUEST });
+
+    const { data } = await axios.get("/api/v1/admin/users");
+
+    dispatch({
+      type: ALL_USERS_SUCCESS,
+      payload: data.users,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_USERS_FAIL,
       payload: error.response.data.message,
     });
   }
