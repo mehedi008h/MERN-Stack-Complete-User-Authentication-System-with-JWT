@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { BsEmojiSmile } from "react-icons/bs";
+import { BsEmojiSmile, BsPhone } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
+import { GrLocation } from "react-icons/gr";
 import "./Profile.css";
 
 const Profile = () => {
@@ -25,11 +26,21 @@ const Profile = () => {
               <hr />
               <div className="d-flex align-items-center justify-content-between">
                 <div className="mx-auto">
-                  <h1>Image</h1>
+                  <div>
+                    <img
+                      src={user?.avatar.url}
+                      style={{
+                        height: "200px",
+                        width: "200px",
+                        borderRadius: "50%",
+                      }}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <div className="divider" />
                 <div className="mx-auto">
-                  <Table responsive="sm">
+                  <Table responsive="sm md lg xl">
                     <tbody>
                       <tr>
                         <td>
@@ -44,6 +55,20 @@ const Profile = () => {
                         </td>
                         <td className="fw-bold">Email</td>
                         <td>{user?.email}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <BsPhone size={25} />
+                        </td>
+                        <td className="fw-bold">Phone</td>
+                        <td>{user?.phone}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <GrLocation size={25} />
+                        </td>
+                        <td className="fw-bold">Address</td>
+                        <td>{user?.address}</td>
                       </tr>
                       <tr>
                         <td>

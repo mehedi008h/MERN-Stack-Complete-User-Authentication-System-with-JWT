@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { loadUser } from "./actions/userActions";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/profile/Profile";
+import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   useEffect(() => {
@@ -21,7 +22,8 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/me" component={Profile} />
+        <Route path="/me" component={Profile} exact />
+        <Route path="/me/update" component={EditProfile} exact />
       </Router>
     </div>
   );

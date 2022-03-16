@@ -8,10 +8,11 @@ const Register = ({ history }) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
   });
 
-  const { name, email, password } = user;
+  const { name, email, phone, password } = user;
 
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
@@ -42,6 +43,7 @@ const Register = ({ history }) => {
     const formData = new FormData();
     formData.set("name", name);
     formData.set("email", email);
+    formData.set("phone", phone);
     formData.set("password", password);
     formData.set("avatar", avatar);
 
@@ -67,11 +69,11 @@ const Register = ({ history }) => {
   return (
     <div className="login">
       <div className="login_container">
-        <h3 className="text-center">Login</h3>
+        <h4 className="text-center">Register User</h4>
 
         <form onSubmit={submitHandler} encType="multipart/form-data">
           <div className="from_group">
-            <label htmlFor="email_field">Email</label>
+            <label htmlFor="email_field">Name</label>
             <input
               className="from_input"
               name="name"
@@ -88,6 +90,16 @@ const Register = ({ history }) => {
               value={email}
               onChange={onChange}
               type="email"
+            />
+          </div>
+          <div className="from_group">
+            <label htmlFor="email_field">Phone</label>
+            <input
+              className="from_input"
+              name="phone"
+              value={phone}
+              onChange={onChange}
+              type="number"
             />
           </div>
           <div className="from_group">
@@ -128,7 +140,7 @@ const Register = ({ history }) => {
             </div>
           </div>
           <div className="from_group">
-            <button>Login</button>
+            <button>Register</button>
           </div>
         </form>
       </div>

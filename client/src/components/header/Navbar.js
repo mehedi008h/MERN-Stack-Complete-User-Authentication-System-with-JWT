@@ -18,11 +18,24 @@ const Navbar = () => {
         />
       </div>
       <div className="app__navbar-login">
-        {/* <img className="me-2" src={user?.avatar.url} alt="" /> */}
+        <Link to="/" className="p__opensans">
+          Home
+        </Link>
 
         <div />
         {user ? (
           <>
+            <img
+              className="me-2"
+              src={user?.avatar?.url}
+              style={{
+                height: "50px",
+                width: "50px",
+                borderRadius: "50%",
+                marginLeft: "10px",
+              }}
+              alt=""
+            />
             <button onClick={() => setDropdown(true)} className="profile_btn">
               {user?.name}
             </button>

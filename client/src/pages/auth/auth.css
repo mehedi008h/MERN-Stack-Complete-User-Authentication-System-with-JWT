@@ -7,10 +7,11 @@
   justify-content: center;
 }
 .login_container {
-  background-color: black;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   min-width: 350px;
   padding: 1.5rem;
-  color: white;
+  color: black;
   border-radius: 15px;
 }
 .from_group {
