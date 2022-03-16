@@ -1,0 +1,8 @@
+.role_input {
+  height: 40px;
+  width: 120px;
+  padding: 5px 20px;
+  border-radius: 20px;
+  outline: none;
+  border: 2px solid #4a92fc;
+}

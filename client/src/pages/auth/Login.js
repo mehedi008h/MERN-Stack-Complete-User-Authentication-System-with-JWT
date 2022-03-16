@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import { Link } from "react-router-dom";
 
 import "./auth.css";
 import { clearErrors, login } from "../../actions/userActions";
@@ -61,6 +62,14 @@ const Login = ({ history, location }) => {
             <button>Login</button>
           </div>
         </form>
+        <div className="text-center mt-3">
+          <Link to="/password/forgot" style={{ textDecoration: "none" }}>
+            Forgot Password
+          </Link>
+          <div className="mt-3">
+            Dont Have an account ? <Link to="/register">Signup</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

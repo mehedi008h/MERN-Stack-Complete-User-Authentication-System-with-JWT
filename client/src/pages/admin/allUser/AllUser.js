@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { Spinner, Table } from "react-bootstrap";
-import {
-  AiOutlineDelete,
-  AiOutlineEdit,
-  AiOutlineFundView,
-} from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { GrFormView } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -19,7 +15,6 @@ const AllUser = ({ history }) => {
   const dispatch = useDispatch();
 
   const { loading, error, users } = useSelector((state) => state.allUsers);
-  console.log(users);
 
   useEffect(() => {
     dispatch(allUsers());
@@ -67,12 +62,13 @@ const AllUser = ({ history }) => {
                               <td>{user?.email}</td>
                               <td>{user?.role}</td>
                               <td>
-                                <Link className="admin_link" to="/">
+                                <Link
+                                  className="admin_link"
+                                  to={`/admin/user/${user._id}`}
+                                >
                                   <GrFormView size={25} />
                                 </Link>
-                                <Link className="admin_link" to="/">
-                                  <AiOutlineEdit size={25} />
-                                </Link>
+
                                 <Link className="admin_link" to="/">
                                   <AiOutlineDelete size={25} />
                                 </Link>

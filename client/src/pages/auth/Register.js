@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { clearErrors, register } from "../../actions/userActions";
 import "./auth.css";
 
@@ -112,30 +114,31 @@ const Register = ({ history }) => {
               type="password"
             />
           </div>
-          <div className="form-group">
+          <div className="form-group mt-3">
             <label htmlFor="avatar_upload">Avatar</label>
             <div className="d-flex align-items-center">
-              <div>
+              <div className="mt-3">
                 <figure className="avatar mr-3 item-rtl">
                   <img
+                    style={{
+                      height: "50px",
+                      width: "50px",
+                      borderRadius: "50%",
+                    }}
                     src={avatarPreview}
-                    className="rounded-circle"
                     alt="Avatar Preview"
                   />
                 </figure>
               </div>
-              <div className="custom-file">
+              <div className="image_file ms-2">
                 <input
                   type="file"
                   name="avatar"
-                  className="custom-file-input"
                   id="customFile"
                   accept="iamges/*"
                   onChange={onChange}
                 />
-                <label className="custom-file-label" htmlFor="customFile">
-                  Choose Avatar
-                </label>
+                <AiOutlineCloudUpload size={20} />
               </div>
             </div>
           </div>
@@ -143,6 +146,11 @@ const Register = ({ history }) => {
             <button>Register</button>
           </div>
         </form>
+        <div className="text-center mt-3">
+          <span>
+            Already have an account ? <Link to="/login">Login</Link>
+          </span>
+        </div>
       </div>
     </div>
   );

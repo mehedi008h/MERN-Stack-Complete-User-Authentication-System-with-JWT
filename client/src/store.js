@@ -4,6 +4,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   allUsersReducer,
   authReducer,
+  forgotPasswordReducer,
+  userDetailsReducer,
   userReducer,
 } from "./reduceres/userReduceres";
 
@@ -11,6 +13,8 @@ const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   allUsers: allUsersReducer,
+  userDetails: userDetailsReducer,
+  forgotPassword: forgotPasswordReducer,
 });
 
 const middlware = [thunk];

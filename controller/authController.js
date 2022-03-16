@@ -73,9 +73,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // Create reset password url
-  const resetUrl = `${req.protocol}:/${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetUrl = `${req.protocol}:/3000/password/reset/${resetToken}`;
 
   const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
 
@@ -245,11 +243,10 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 // Update user profile   =>   /api/v1/admin/user/:id
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
-    email: req.body.email,
     role: req.body.role,
   };
 
+  console.log("Role", role);
   const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
