@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const connectDatabase = require("./config/database");
 const cloudinary = require("cloudinary");
+const path = require("path");
 
 const app = express();
 dotenv.config();
