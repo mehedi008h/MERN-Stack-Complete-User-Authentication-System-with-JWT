@@ -35,9 +35,14 @@ const Sidebar = ({ user }) => {
       </div>
       <hr className="text-primary fw-bold" />
       <div className="links">
-        <Link to="/admin/alluser" className="link">
-          <AiOutlineUnorderedList className="me-3" size={20} /> All User
-        </Link>
+        {user?.role === "admin" && (
+          <>
+            <Link to="/admin/alluser" className="link">
+              <AiOutlineUnorderedList className="me-3" size={20} /> All User
+            </Link>
+          </>
+        )}
+
         <Link to="/me" className="link">
           <RiUser3Line className="me-3" size={20} /> My Profile
         </Link>

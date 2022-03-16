@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./auth.css";
 import { clearErrors, login } from "../../actions/userActions";
+import ButtonLoader from "../../components/loader/ButtonLoader";
 
 const Login = ({ history, location }) => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const Login = ({ history, location }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, error, history]);
+  }, [dispatch, alert, isAuthenticated, error, history, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -59,7 +60,7 @@ const Login = ({ history, location }) => {
             />
           </div>
           <div className="from_group">
-            <button>Login</button>
+            <button>{loading ? <ButtonLoader /> : "Login"}</button>
           </div>
         </form>
         <div className="text-center mt-3">

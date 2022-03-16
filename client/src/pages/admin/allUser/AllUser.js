@@ -5,8 +5,13 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { GrFormView } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { allUsers, clearErrors } from "../../../actions/userActions";
+import {
+  allUsers,
+  clearErrors,
+  deleteUser,
+} from "../../../actions/userActions";
 import Sidebar from "../../../components/sidebar/Sidebar";
+import { DELETE_USER_RESET } from "../../../constants/userConstants";
 import "./AllUser.css";
 
 const AllUser = ({ history }) => {
@@ -15,6 +20,7 @@ const AllUser = ({ history }) => {
   const dispatch = useDispatch();
 
   const { loading, error, users } = useSelector((state) => state.allUsers);
+  const { isDeleted } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(allUsers());
@@ -23,7 +29,17 @@ const AllUser = ({ history }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, error, history]);
+
+    if (isDeleted) {
+      alert.success("User deleted successfully");
+      history.push("/admin/alluser");
+      dispatch({ type: DELETE_USER_RESET });
+    }
+  }, [dispatch, alert, error, isDeleted, history]);
+
+  const deleteUserHandler = (id) => {
+    dispatch(deleteUser(id));
+  };
   return (
     <div className="profile">
       <div className="container mt-5">
@@ -69,9 +85,12 @@ const AllUser = ({ history }) => {
                                   <GrFormView size={25} />
                                 </Link>
 
-                                <Link className="admin_link" to="/">
-                                  <AiOutlineDelete size={25} />
-                                </Link>
+                                <button
+                                  className="btn btn-outline-danger btn-sm"
+                                  onClick={() => deleteUserHandler(user._id)}
+                                >
+                                  <AiOutlineDelete size={20} />
+                                </button>
                               </td>
                             </tr>
                           ))}

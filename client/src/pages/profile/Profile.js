@@ -27,7 +27,7 @@ const Profile = () => {
                 </Link>
               </div>
               <hr />
-              <div className="d-flex align-items-center justify-content-between">
+              <div className="d-flex align-items-center justify-content-between flex">
                 <div className="mx-auto">
                   <div>
                     <img

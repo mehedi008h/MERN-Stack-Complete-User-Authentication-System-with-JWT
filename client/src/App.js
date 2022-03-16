@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app">
       <Router>
         <Navbar />
         <Route path="/" component={Home} exact />

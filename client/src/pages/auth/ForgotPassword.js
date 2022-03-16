@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, forgotPassword } from "../../actions/userActions";
+import ButtonLoader from "../../components/loader/ButtonLoader";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
           </div>
 
           <div className="from_group">
-            <button>Send</button>
+            <button>{loading ? <ButtonLoader /> : "Send"}</button>
           </div>
         </form>
       </div>

@@ -1,13 +1,11 @@
 .profile {
-  min-height: 90vh;
+  min-height: 89vh;
   background-color: aliceblue;
   display: flex;
 }
 .profile_container {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   padding: 1rem 2rem;
@@ -56,4 +54,14 @@
 .edit_link:hover {
   color: white;
   background-color: #2590eb;
+}
+
+@media screen and (max-width: 650px) {
+  .flex {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .divider {
+    display: none;
+  }
 }

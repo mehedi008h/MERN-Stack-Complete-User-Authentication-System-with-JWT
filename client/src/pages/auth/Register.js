@@ -4,6 +4,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearErrors, register } from "../../actions/userActions";
+import ButtonLoader from "../../components/loader/ButtonLoader";
 import "./auth.css";
 
 const Register = ({ history }) => {
@@ -143,7 +144,7 @@ const Register = ({ history }) => {
             </div>
           </div>
           <div className="from_group">
-            <button>Register</button>
+            <button>{loading ? <ButtonLoader /> : "Register"}</button>
           </div>
         </form>
         <div className="text-center mt-3">

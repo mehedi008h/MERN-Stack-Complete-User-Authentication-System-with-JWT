@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { IoMdList } from "react-icons/io";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Spinner } from "react-bootstrap";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
   const { user, loading } = useSelector((state) => state.auth);
   return (
     <nav className="app__navbar">
@@ -23,46 +23,36 @@ const Navbar = () => {
         </Link>
 
         <div />
-        {user ? (
+        {loading ? (
           <>
-            <img
-              className="me-2"
-              src={user?.avatar?.url}
-              style={{
-                height: "50px",
-                width: "50px",
-                borderRadius: "50%",
-                marginLeft: "10px",
-              }}
-              alt=""
-            />
-            <button onClick={() => setDropdown(true)} className="profile_btn">
-              {user?.name}
-            </button>
-            {dropdown && (
-              <ul className="sub_menu">
-                <Link
-                  to="/me"
-                  onClick={() => setDropdown(false)}
-                  className="p__opensans"
-                >
-                  My Profile
-                </Link>
-                <Link
-                  to="/me"
-                  onClick={() => setDropdown(false)}
-                  className="p__opensans"
-                >
-                  Logout
-                </Link>
-              </ul>
-            )}
+            <Spinner animation="border" variant="primary" />
           </>
         ) : (
           <>
-            <Link to="/login" className="p__opensans">
-              Log In / Registration
-            </Link>
+            {user ? (
+              <>
+                <img
+                  className="me-2"
+                  src={user?.avatar?.url}
+                  style={{
+                    height: "50px",
+                    width: "50px",
+                    borderRadius: "50%",
+                    marginLeft: "10px",
+                  }}
+                  alt=""
+                />
+                <Link to="/me" className="profile_btn">
+                  {user?.name}
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="p__opensans">
+                  Log In / Registration
+                </Link>
+              </>
+            )}
           </>
         )}
       </div>
@@ -74,36 +64,45 @@ const Navbar = () => {
         />
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
-            <MdOutlineRestaurantMenu
+            <IoMdList
               fontSize={27}
               className="overlay__close"
               onClick={() => setToggleMenu(false)}
             />
             <ul className="app__navbar-smallscreen_links">
               <li>
-                <a href="#home" onClick={() => setToggleMenu(false)}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to="/"
+                  onClick={() => setToggleMenu(false)}
+                >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" onClick={() => setToggleMenu(false)}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#menu" onClick={() => setToggleMenu(false)}>
-                  Menu
-                </a>
-              </li>
-              <li>
-                <a href="#awards" onClick={() => setToggleMenu(false)}>
-                  Awards
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={() => setToggleMenu(false)}>
-                  Contact
-                </a>
+                {user ? (
+                  <>
+                    <Link
+                      to="/me"
+                      onClick={() => setToggleMenu(false)}
+                      className="profile_btn"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {user?.name}
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      onClick={() => setToggleMenu(false)}
+                      className="p__opensans"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Log In / Registration
+                    </Link>
+                  </>
+                )}
               </li>
             </ul>
           </div>

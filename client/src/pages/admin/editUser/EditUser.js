@@ -49,7 +49,7 @@ const EditUser = ({ history, match }) => {
         type: UPDATE_USER_RESET,
       });
     }
-  }, [dispatch, alert, error, history, isUpdated, userId, user]);
+  }, [dispatch, alert, error, userDetails, history, isUpdated, userId]);
 
   return (
     <div className="profile">
