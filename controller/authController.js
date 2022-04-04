@@ -1,5 +1,5 @@
 const User = require("../models/user");
-
+const jwt = require("jsonwebtoken");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
@@ -19,7 +19,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     });
     const { name, email, phone, password } = req.body;
 
-    const user = await User.create({
+    const user = {
         name,
         email,
         phone,
@@ -28,9 +28,53 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
             public_id: result.public_id,
             url: result.secure_url,
         },
-    });
+    };
 
-    sendToken(user, 200, res);
+    const token = createActivationToken(user);
+
+    // Create reset password url
+    const resetUrl = `${req.protocol}://${req.get("host")}/activation/${token}`;
+
+    const message = `An activation email send is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
+
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: "MERN Auth Email Activation",
+            message,
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email sent to: ${user.email}`,
+        });
+    } catch (error) {
+        await user.save({ validateBeforeSave: false });
+
+        return next(new ErrorHandler(error.message, 500));
+    }
+});
+
+// Register a user   => /api/v1/activation
+exports.activeEmail = catchAsyncErrors(async (req, res, next) => {
+    const { activation_token } = req.body;
+
+    // verify token & get user
+    const user = jwt.verify(activation_token, process.env.JWT_SECRET);
+
+    const { name, email, phone, password, avatar } = user;
+
+    const newUser = await User.create({
+        name,
+        email,
+        phone,
+        password,
+        avatar: {
+            public_id: avatar.public_id,
+            url: avatar.url,
+        },
+    });
+    sendToken(newUser, 200, res);
 });
 
 // Login User  =>  /api/v1/login
@@ -278,3 +322,9 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
         success: true,
     });
 });
+
+const createActivationToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_TIME,
+    });
+};

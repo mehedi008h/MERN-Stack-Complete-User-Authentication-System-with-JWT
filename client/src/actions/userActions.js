@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+    ACTIVE_EMAIL_FAIL,
+    ACTIVE_EMAIL_REQUEST,
+    ACTIVE_EMAIL_SUCCESS,
     ALL_USERS_FAIL,
     ALL_USERS_REQUEST,
     ALL_USERS_SUCCESS,
@@ -82,11 +85,41 @@ export const register = (userData) => async (dispatch) => {
 
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: data.user,
+            payload: data.message,
         });
     } catch (error) {
         dispatch({
             type: REGISTER_USER_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Reset password
+export const activeEmail = (activation_token) => async (dispatch) => {
+    try {
+        dispatch({ type: ACTIVE_EMAIL_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const { data } = await axios.post(
+            `/api/v1/activation`,
+            { activation_token },
+            config
+        );
+
+        console.log(data);
+
+        dispatch({
+            type: ACTIVE_EMAIL_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ACTIVE_EMAIL_FAIL,
             payload: error.response.data.message,
         });
     }

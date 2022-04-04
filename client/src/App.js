@@ -15,39 +15,56 @@ import ProtectedRoute from "./components/route/ProtectedRoute";
 import EditUser from "./pages/admin/editUser/EditUser";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import NewPassword from "./pages/auth/NewPassword";
+import ActivationEmail from "./pages/auth/ActivationEmail";
 
 function App() {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
 
-  return (
-    <div className="app">
-      <Router>
-        <Navbar />
-        <Route path="/" component={Home} exact />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/password/forgot" component={ForgotPassword} exact />
-        <Route path="/password/reset/:token" component={NewPassword} exact />
-        <Route path="/me" component={Profile} exact />
-        <Route path="/me/update" component={EditProfile} exact />
-        <Route path="/password/update" component={ChangePassword} exact />
-        <ProtectedRoute
-          path="/admin/alluser"
-          component={AllUser}
-          isAdmin={true}
-          exact
-        />
-        <ProtectedRoute
-          path="/admin/user/:id"
-          component={EditUser}
-          isAdmin={true}
-          exact
-        />
-      </Router>
-    </div>
-  );
+    return (
+        <div className="app">
+            <Router>
+                <Navbar />
+                <Route path="/" component={Home} exact />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route
+                    path="/activation/:activation_token"
+                    component={ActivationEmail}
+                />
+                <Route
+                    path="/password/forgot"
+                    component={ForgotPassword}
+                    exact
+                />
+                <Route
+                    path="/password/reset/:token"
+                    component={NewPassword}
+                    exact
+                />
+                <Route path="/me" component={Profile} exact />
+                <Route path="/me/update" component={EditProfile} exact />
+                <Route
+                    path="/password/update"
+                    component={ChangePassword}
+                    exact
+                />
+                <ProtectedRoute
+                    path="/admin/alluser"
+                    component={AllUser}
+                    isAdmin={true}
+                    exact
+                />
+                <ProtectedRoute
+                    path="/admin/user/:id"
+                    component={EditUser}
+                    isAdmin={true}
+                    exact
+                />
+            </Router>
+        </div>
+    );
 }
 
 export default App;
