@@ -36,6 +36,7 @@ const Register = ({ history }) => {
 
         if (message) {
             alert.success(message);
+            history.push("/");
         }
 
         if (error) {
