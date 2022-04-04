@@ -1,8 +1,8 @@
 .home {
-  min-height: 89vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-base);
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-base);
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }

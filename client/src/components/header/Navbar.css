@@ -1,61 +1,62 @@
 .app__navbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--color-black);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-black);
+    height: 70px;
 
-  padding: 1rem 2rem;
-  position: relative;
+    padding: 1rem 2rem;
+    position: relative;
 }
 .p__opensans {
-  font-family: var(--font-alt);
-  color: var(--color-white);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: capitalize;
-  line-height: 28px;
-  font-size: 16px;
+    font-family: var(--font-alt);
+    color: var(--color-white);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    line-height: 28px;
+    font-size: 16px;
 }
 .app__navbar-logo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .app__navbar-logo img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .app__navbar-links {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  list-style: none;
+    list-style: none;
 }
 
 .app__navbar-links li {
-  margin: 0 1rem;
-  cursor: pointer;
+    margin: 0 1rem;
+    cursor: pointer;
 }
 
 .app__navbar-links li:hover {
-  color: var(--color-grey);
+    color: var(--color-grey);
 }
 
 .app__navbar-login {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .app__navbar-login a {
-  margin: 0 1rem;
-  text-decoration: none;
-  transition: 0.5s ease;
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: 0.5s ease;
 }
 
 /* .app__navbar-login a:hover {
@@ -63,98 +64,98 @@
 } */
 
 .app__navbar-login div {
-  width: 1px;
-  height: 30px;
-  background: var(--color-grey);
+    width: 1px;
+    height: 30px;
+    background: var(--color-grey);
 }
 
 .app__navbar-smallscreen {
-  display: none;
+    display: none;
 }
 
 .app__navbar-smallscreen_overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--color-black);
-  transition: 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-black);
+    transition: 0.5s ease;
 
-  flex-direction: column;
-  z-index: 5;
+    flex-direction: column;
+    z-index: 5;
 }
 
 .app__navbar-smallscreen_overlay .overlay__close {
-  font-size: 27px;
-  color: var(--color-golden);
-  cursor: pointer;
+    font-size: 27px;
+    color: var(--color-golden);
+    cursor: pointer;
 
-  position: absolute;
-  top: 20px;
-  right: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 .flex__center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .app__navbar-smallscreen_links {
-  list-style: none;
+    list-style: none;
 }
 
 .app__navbar-smallscreen_links li {
-  margin: 2rem;
-  cursor: pointer;
-  color: var(--color-golden);
-  font-size: 2rem;
-  text-align: center;
-  font-family: var(--font-base);
+    margin: 2rem;
+    cursor: pointer;
+    color: var(--color-golden);
+    font-size: 2rem;
+    text-align: center;
+    font-family: var(--font-base);
 }
 
 .app__navbar-smallscreen_links li:hover {
-  color: var(--color-white);
+    color: var(--color-white);
 }
 .profile_btn {
-  border: 2px solid goldenrod;
-  color: white;
-  background-color: black;
-  border-radius: 20px;
-  padding: 0.3rem 1rem;
-  margin-left: 10px;
+    border: 2px solid goldenrod;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    padding: 0.3rem 1rem;
+    margin-left: 10px;
 }
 
 .profile_btn:hover {
-  color: white;
+    color: white;
 }
 
 @media screen and (min-width: 2000px) {
-  .app__navbar-logo img {
-    width: 210px;
-  }
+    .app__navbar-logo img {
+        width: 210px;
+    }
 }
 
 @media screen and (max-width: 1150px) {
-  .app__navbar-links {
-    display: none;
-  }
+    .app__navbar-links {
+        display: none;
+    }
 
-  .app__navbar-smallscreen {
-    display: flex;
-  }
+    .app__navbar-smallscreen {
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 650px) {
-  .app__navbar {
-    padding: 1rem;
-  }
+    .app__navbar {
+        padding: 1rem;
+    }
 
-  .app__navbar-login {
-    display: none;
-  }
+    .app__navbar-login {
+        display: none;
+    }
 
-  .app__navbar-logo img {
-    width: 30px;
-  }
+    .app__navbar-logo img {
+        width: 30px;
+    }
 }

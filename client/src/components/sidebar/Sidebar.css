@@ -1,41 +1,41 @@
 .sidebar {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  /* backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px); */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
-  padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 1rem;
 }
 
 .links {
-  display: flex;
-  flex-direction: column;
-  padding: 2px;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
 }
 .link {
-  padding: 10px 20px;
-  text-decoration: none;
-  color: black;
-  font-family: var(--font-base);
-  font-weight: 500;
-  letter-spacing: 1px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    font-family: var(--font-base);
+    font-weight: 500;
+    letter-spacing: 1px;
 
-  border-radius: 10px;
-  margin-top: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 .link:hover {
-  background-color: aliceblue;
+    background-color: aliceblue;
 }
 
 .user_role {
-  background-color: rgb(152, 218, 152);
-  width: 50%;
-  margin: auto;
-  padding: 5px 10px;
-  font-weight: 500;
-  text-transform: capitalize;
-  color: black;
-  border: 2px solid green;
-  border-radius: 20px;
+    background-color: #ddd9e9;
+    width: 50%;
+    margin: auto;
+    padding: 5px 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: black;
+    border: 2px solid #8686f4;
+    border-radius: 20px;
 }

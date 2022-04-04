@@ -1,43 +1,49 @@
 /* login */
 
 .login {
-  min-height: 88vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .login_container {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  min-width: 350px;
-  padding: 1.5rem;
-  color: black;
-  border-radius: 15px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    width: 350px;
+    padding: 1.5rem;
+    color: black;
+    border-radius: 15px;
 }
 .from_group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
 }
 .from_input {
-  height: 40px;
-  border-radius: 20px;
-  outline: none;
-  padding: 0.5rem 1rem;
-  border: 2px solid blueviolet;
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid blueviolet;
 }
 .from_group button {
-  background-color: brown;
-  border-radius: 20px;
-  border: none;
-  padding: 0.5rem;
-  margin-top: 20px;
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 0.5s ease-in-out;
+    background-color: brown;
+    border-radius: 20px;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 20px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.5s ease-in-out;
 }
 .from_group button:hover {
-  background-color: rgb(197, 57, 57);
+    background-color: rgb(197, 57, 57);
+}
+
+@media screen and (max-width: 650px) {
+    .login_container {
+        width: 300px;
+    }
 }

@@ -1,67 +1,66 @@
 .profile {
-  min-height: 89vh;
-  background-color: aliceblue;
-  display: flex;
+    min-height: 89vh;
+    background-color: aliceblue;
+    display: flex;
 }
 .profile_container {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
-  padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 1rem 2rem;
 }
-.divider {
-  height: 80px;
-  width: 2px;
-  background-color: black;
+.form {
+    width: 350px;
 }
 .image_file {
-  height: 50px;
-  width: 300px;
-  border-radius: 20px;
-  position: relative;
+    height: 50px;
+    width: 300px;
+    border-radius: 20px;
+    position: relative;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  border: 4px solid #ffffff;
-  overflow: hidden;
-  background-image: linear-gradient(to bottom, #2590eb 50%, #ffffff 50%);
-  background-size: 100% 200%;
-  transition: all 1s;
-  color: #ffffff;
-  font-size: 100px;
+    border: 4px solid #ffffff;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, #2590eb 50%, #ffffff 50%);
+    background-size: 100% 200%;
+    transition: all 1s;
+    color: #ffffff;
+    font-size: 100px;
 }
 .image_file input {
-  height: 300px;
-  width: 300px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  cursor: pointer;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
 }
 
 .edit_link {
-  background-color: #d7e0e7;
-  padding: 5px 15px;
-  border-radius: 20px;
-  color: black;
-  border: 2px solid #2590eb;
-  text-decoration: none;
+    background-color: #d7e0e7;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: black;
+    border: 2px solid #2590eb;
+    text-decoration: none;
 }
 .edit_link:hover {
-  color: white;
-  background-color: #2590eb;
+    color: white;
+    background-color: #2590eb;
 }
 
 @media screen and (max-width: 650px) {
-  .flex {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .divider {
-    display: none;
-  }
+    .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form {
+        width: 250px;
+    }
 }

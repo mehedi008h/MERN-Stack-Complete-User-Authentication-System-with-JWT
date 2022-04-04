@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { Table } from "react-bootstrap";
 import { AiOutlineMail } from "react-icons/ai";
@@ -6,141 +6,171 @@ import { BsEmojiSmile, BsPhone } from "react-icons/bs";
 import { GrLocation } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  clearErrors,
-  getUserDetails,
-  updateUser,
+    clearErrors,
+    getUserDetails,
+    updateUser,
 } from "../../../actions/userActions";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import { UPDATE_USER_RESET } from "../../../constants/userConstants";
 import "./EditUser.css";
 
 const EditUser = ({ history, match }) => {
-  const { user } = useSelector((state) => state.auth);
-  const { error, isUpdated } = useSelector((state) => state.user);
-  const { userDetails } = useSelector((state) => state.userDetails);
+    const [role, setRole] = useState("");
 
-  const alert = useAlert();
-  const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
+    const { error, isUpdated } = useSelector((state) => state.user);
+    const { userDetails } = useSelector((state) => state.userDetails);
 
-  const userId = match.params.id;
+    const alert = useAlert();
+    const dispatch = useDispatch();
 
-  // update order status
-  const handleUpdateRole = (id, role) => {
-    console.log("Status", role);
-    dispatch(updateUser(id, role));
-  };
+    const userId = match.params.id;
 
-  useEffect(() => {
-    if (userDetails && userDetails._id !== userId) {
-      dispatch(getUserDetails(userId));
-    }
+    // update order status
+    const submitHandler = (e) => {
+        e.preventDefault();
 
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+        const formData = new FormData();
+        formData.set("role", role);
 
-    if (isUpdated) {
-      alert.success("User updated successfully");
+        dispatch(updateUser(userDetails._id, formData));
+    };
 
-      history.push("/admin/users");
+    useEffect(() => {
+        if (userDetails && userDetails._id !== userId) {
+            dispatch(getUserDetails(userId));
+        }
 
-      dispatch({
-        type: UPDATE_USER_RESET,
-      });
-    }
-  }, [dispatch, alert, error, userDetails, history, isUpdated, userId]);
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
 
-  return (
-    <div className="profile">
-      <div className="container mt-5">
-        <div className="row g-3">
-          <div className="col-md-3">
-            <Sidebar user={user} />
-          </div>
-          <div className="col-md-9">
-            <div className="profile_container">
-              <h4 className="text-center mb-4">User Details</h4>
-              <div className="d-flex align-items-center justify-content-between">
-                <div className="mx-auto">
-                  <div>
-                    <img
-                      src={userDetails?.avatar?.url}
-                      style={{
-                        height: "200px",
-                        width: "200px",
-                        borderRadius: "50%",
-                      }}
-                      alt=""
-                    />
-                  </div>
-                  <div className="d-flex justify-content-center flex-column align-items-center mt-3">
-                    <label htmlFor="role_field">Change User Role</label>
+        if (isUpdated) {
+            alert.success("User updated successfully");
 
-                    <select
-                      className="role_input  mt-3"
-                      aria-label="Default select example"
-                      onChange={(e) =>
-                        handleUpdateRole(userDetails._id, e.target.value)
-                      }
-                    >
-                      <option defaultValue={userDetails.role}>
-                        {userDetails.role}
-                      </option>
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
-                    </select>
-                  </div>
+            history.push("/admin/alluser");
+
+            dispatch({
+                type: UPDATE_USER_RESET,
+            });
+        }
+    }, [dispatch, alert, error, userDetails, history, isUpdated, userId]);
+
+    return (
+        <div className="profile">
+            <div className="container mt-5">
+                <div className="row g-3">
+                    <div className="col-md-3">
+                        <Sidebar user={user} />
+                    </div>
+                    <div className="col-md-9">
+                        <div className="profile_container">
+                            <h4 className="text-center mb-4">User Details</h4>
+                            <div className="row g-3">
+                                <div className="col-md-6">
+                                    <div className="text-center">
+                                        <img
+                                            src={userDetails?.avatar?.url}
+                                            style={{
+                                                height: "200px",
+                                                width: "200px",
+                                                borderRadius: "50%",
+                                            }}
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div className="d-flex justify-content-center flex-column align-items-center mt-3">
+                                        <label htmlFor="role_field">
+                                            Change User Role
+                                        </label>
+                                        <form onSubmit={submitHandler}>
+                                            <select
+                                                id="role_field"
+                                                className="role_input  mt-3"
+                                                name="role"
+                                                value={role}
+                                                onChange={(e) =>
+                                                    setRole(e.target.value)
+                                                }
+                                            >
+                                                <option value="user">
+                                                    user
+                                                </option>
+                                                <option value="admin">
+                                                    admin
+                                                </option>
+                                            </select>
+
+                                            <div className="text-center mt-3">
+                                                <button
+                                                    className="btn btn-warning btn-sm"
+                                                    type="submit"
+                                                >
+                                                    Update
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 d-flex align-items-center justify-content-between">
+                                    <Table responsive>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <BsEmojiSmile size={25} />
+                                                </td>
+                                                <td className="fw-bold">
+                                                    Name
+                                                </td>
+                                                <td>{userDetails?.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <AiOutlineMail size={25} />
+                                                </td>
+                                                <td className="fw-bold">
+                                                    Email
+                                                </td>
+                                                <td>{userDetails?.email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <BsPhone size={25} />
+                                                </td>
+                                                <td className="fw-bold">
+                                                    Phone
+                                                </td>
+                                                <td>{userDetails?.phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <GrLocation size={25} />
+                                                </td>
+                                                <td className="fw-bold">
+                                                    Address
+                                                </td>
+                                                <td>{userDetails?.address}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <BsEmojiSmile size={25} />
+                                                </td>
+                                                <td className="fw-bold">
+                                                    Role
+                                                </td>
+                                                <td>{userDetails?.role}</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="divider" />
-                <div className="mx-auto">
-                  <Table responsive>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <BsEmojiSmile size={25} />
-                        </td>
-                        <td className="fw-bold">Name</td>
-                        <td>{userDetails?.name}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <AiOutlineMail size={25} />
-                        </td>
-                        <td className="fw-bold">Email</td>
-                        <td>{userDetails?.email}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <BsPhone size={25} />
-                        </td>
-                        <td className="fw-bold">Phone</td>
-                        <td>{userDetails?.phone}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <GrLocation size={25} />
-                        </td>
-                        <td className="fw-bold">Address</td>
-                        <td>{userDetails?.address}</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <BsEmojiSmile size={25} />
-                        </td>
-                        <td className="fw-bold">Role</td>
-                        <td>{userDetails?.role}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default EditUser;
