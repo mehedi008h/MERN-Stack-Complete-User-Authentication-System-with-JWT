@@ -33,9 +33,21 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     const token = createActivationToken(user);
 
     // Create reset password url
-    const resetUrl = `${req.protocol}://${req.get("host")}/activation/${token}`;
+    const resetUrl = `https://mernauth08h.herokuapp.com/activation/${token}`;
 
-    const message = `An activation email send is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
+    const message = `<div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+                        <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the MERN Auth app.</h2>
+                        <p>Congratulations! You're almost set to start using MERN Auth app.
+                            Just click the button below to validate your email address.
+                        </p>
+                        
+                        <a href=${resetUrl} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">Active</a>
+
+                        <p>If the button doesn't work for any reason, you can also click on the link below:</p>
+
+                        <div>${resetUrl}</div>
+                        <p>If you have not requested this email, then ignore it.</p>
+                    </div>`;
 
     try {
         await sendEmail({
@@ -117,9 +129,21 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // Create reset password url
-    const resetUrl = `${req.protocol}:/3000/password/reset/${resetToken}`;
+    const resetUrl = `https://mernauth08h.herokuapp.com/password/reset/${resetToken}`;
 
-    const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
+    const message = `<div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+                        <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the MERN Auth app.</h2>
+                        <p>
+                            Just click the button below to reset your password.
+                        </p>
+                        
+                        <a href=${resetUrl} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">Reset Password</a>
+
+                        <p>If the button doesn't work for any reason, you can also click on the link below:</p>
+
+                        <div>${resetUrl}</div>
+                        <p>If you have not requested this email, then ignore it.</p>
+                    </div>`;
 
     try {
         await sendEmail({
